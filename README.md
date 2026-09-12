@@ -75,6 +75,36 @@ Every binding name is documented in `herdr --default-config`.
 Note that `herdr config check` validates each binding's *syntax* but does not
 detect two actions claiming the same key; a collision fails silently at runtime.
 
+## Development
+
+Link your working tree instead of installing from GitHub, so edits take effect
+with no reinstall step:
+
+```sh
+herdr plugin uninstall tmurdr    # drop any GitHub-managed copy first
+herdr plugin link ~/code/tmurdr
+herdr plugin list                # should read [local:/path/to/tmurdr]
+```
+
+A plugin id can only be held by one source at a time, so a `link` while the
+GitHub copy is installed silently replaces it — uninstalling first keeps the
+managed checkout from lingering under `~/.config/herdr/plugins/github/`.
+
+Read action output with `herdr plugin log list --plugin tmurdr --limit 1`;
+`stdout`, `stderr` and `exit_code` are all in there.
+
+Test config changes against a throwaway directory rather than your real config —
+Herdr honours `XDG_CONFIG_HOME`:
+
+```sh
+mkdir -p /tmp/t/herdr && cp ~/.config/herdr/config.toml /tmp/t/herdr/
+XDG_CONFIG_HOME=/tmp/t bash bin/apply.sh
+XDG_CONFIG_HOME=/tmp/t herdr config check
+```
+
+`apply` writes a timestamped `config.toml.tmurdr-bak-*` next to your config on
+every run. They are never pruned automatically — delete old ones when you like.
+
 ## Licence
 
 MIT
