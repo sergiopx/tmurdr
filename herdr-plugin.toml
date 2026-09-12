@@ -1,0 +1,20 @@
+id = "tmurdr"
+name = "tmurdr"
+version = "0.1.0"
+min_herdr_version = "0.8.0"
+description = "tmux muscle memory for Herdr: a ctrl+space prefix and the full tmux keymap, applied to your config.toml."
+platforms = ["linux", "macos"]
+
+[[actions]]
+id = "apply"
+title = "Apply tmux keybindings"
+description = "Merge the tmux-parity [keys] block into your Herdr config.toml (backing up first) and reload the server."
+contexts = ["workspace"]
+command = ["bash", "-c", "exec bash \"$HERDR_PLUGIN_ROOT/bin/apply.sh\""]
+
+[[actions]]
+id = "revert"
+title = "Revert to the previous config"
+description = "Restore the most recent config.toml backup that tmurdr created and reload the server."
+contexts = ["workspace"]
+command = ["bash", "-c", "exec bash \"$HERDR_PLUGIN_ROOT/bin/revert.sh\""]

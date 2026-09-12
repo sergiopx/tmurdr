@@ -1,0 +1,61 @@
+[keys]
+# tmux: set-option -g prefix C-Space
+prefix = "ctrl+space"
+
+# --- Workspaces (= tmux sessions) ------------------------------------------
+workspace_picker  = "prefix+s"        # tmux: bind s choose-tree -Zs
+new_workspace     = "prefix+shift+s"  # tmux: bind S new-session
+rename_workspace  = "prefix+$"        # tmux: default rename-session
+close_workspace   = "prefix+ctrl+x"   # tmux: bind C-x kill-session
+detach            = "prefix+d"        # tmux: default detach-client
+
+# --- Tabs (= tmux windows) --------------------------------------------------
+new_tab       = "prefix+c"            # tmux: bind c new-window
+rename_tab    = "prefix+comma"        # tmux: default rename-window
+previous_tab  = "prefix+p"            # tmux: default previous-window
+next_tab      = "prefix+n"            # tmux: default next-window
+switch_tab    = "alt+1..9"            # tmux: bind -n M-1..M-9 select-window
+close_tab     = "prefix+shift+x"      # tmux: bind X kill-window
+
+# --- Panes ------------------------------------------------------------------
+split_vertical    = "prefix+|"        # tmux: bind | split-window -h
+split_horizontal  = "prefix+minus"    # tmux: bind - split-window -v
+close_pane        = "prefix+x"        # tmux: bind x kill-pane
+zoom              = "prefix+z"        # tmux: default resize-pane -Z
+
+# tmux: bind -n C-h/C-j/C-k/C-l select-pane (vim-tmux-navigator, no prefix)
+focus_pane_left   = "ctrl+h"
+focus_pane_down   = "ctrl+j"
+focus_pane_up     = "ctrl+k"
+focus_pane_right  = "ctrl+l"
+
+cycle_pane_next      = "prefix+o"         # tmux: default select-pane -t :.+
+cycle_pane_previous  = "prefix+shift+tab"
+last_pane            = "prefix+semicolon" # tmux: default last-pane
+
+# tmux: bind -r H/J/K/L resize-pane (direct, no resize mode)
+resize_pane_left   = "prefix+shift+h"
+resize_pane_down   = "prefix+shift+j"
+resize_pane_up     = "prefix+shift+k"
+resize_pane_right  = "prefix+shift+l"
+resize_mode        = "prefix+shift+r"     # moved off prefix+r (reload took it)
+
+# --- Misc -------------------------------------------------------------------
+reload_config             = "prefix+r"        # tmux: bind r source-file
+help                      = "prefix+?"        # tmux: default list-keys
+settings                  = "prefix+shift+comma"
+open_notification_target  = "prefix+shift+o"  # moved off prefix+o
+toggle_sidebar            = "prefix+b"
+edit_scrollback           = "prefix+e"        # nearest thing to tmux bind [ copy-mode
+goto                      = "prefix+g"
+new_worktree              = "prefix+shift+g"
+rename_pane               = "prefix+shift+p"
+
+# --- Navigate mode (prefix+s workspace navigation) --------------------------
+# j/k move between spaces, h/l move between panes. Arrows move panes.
+navigate_workspace_up    = "k"
+navigate_workspace_down  = "j"
+navigate_pane_left       = "h"
+navigate_pane_right      = "l"
+navigate_pane_up         = "up"    # moved off "k" — workspaces took it
+navigate_pane_down       = "down"  # moved off "j" — workspaces took it
