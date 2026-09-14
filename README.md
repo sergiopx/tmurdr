@@ -65,6 +65,14 @@ Honest list, because these are Herdr limits rather than oversights:
   reassigned to spaces.
 - **No Herdr equivalent** exists for `synchronize-panes`, `clear-history`, or
   copy-mode's `prefix [` (`prefix e` opens scrollback in `$EDITOR` instead).
+- **No resurrect.** There is no `respawn-pane`, so a pane whose process exits is
+  gone rather than revivable, and nothing replays a saved layout the way
+  [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) does. Herdr
+  keeps the state in the server instead: workspaces survive detach and client
+  death, `[session] resume_agents_on_restore` puts AI-agent panes back into their
+  own conversations after a server restart, and `[experimental] pane_history`
+  (off by default) carries recent scrollback across one. None of that is a
+  keybinding, so tmurdr has nothing to map.
 
 ## Customising
 
